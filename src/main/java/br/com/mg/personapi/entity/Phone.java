@@ -30,6 +30,6 @@ public class Phone {
 	private PhoneType type;
 	
 	@Column(nullable = false)
-	private Long number;
+	private String number;
 	
 }
