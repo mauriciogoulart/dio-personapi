@@ -35,4 +35,49 @@ public class Person {
 	@OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
 	private List<Phone> phones;
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Person other = (Person) obj;
+		if (birthDate == null) {
+			if (other.birthDate != null)
+				return false;
+		} else if (!birthDate.equals(other.birthDate))
+			return false;
+		if (identificationDocument == null) {
+			if (other.identificationDocument != null)
+				return false;
+		} else if (!identificationDocument.equals(other.identificationDocument))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (phones == null) {
+			if (other.phones != null)
+				return false;
+		} else if (!phones.equals(other.phones))
+			return false;
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((birthDate == null) ? 0 : birthDate.hashCode());
+		result = prime * result + ((identificationDocument == null) ? 0 : identificationDocument.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((phones == null) ? 0 : phones.hashCode());
+		return result;
+	}
+	
+	
+
 }
